@@ -132,7 +132,7 @@ if uploaded_file is not None:
     st.image(original_image, caption="Uploaded Image", use_column_width=True)
 
     # Perform glaucoma detection
-    with st.spinner("Detecting glaucoma..."):
+    with st.spinner("<div style='background-color: yellow; color: black;'>Detecting glaucoma...</div>"):
         processed_image = preprocess_image(original_image)
         prediction = predict_glaucoma(processed_image, classifier)
 
