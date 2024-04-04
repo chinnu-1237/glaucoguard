@@ -112,7 +112,7 @@ else:
     all_results = pd.read_csv("results.csv")
 
 # Sidebar for uploading image
-st.markdown("""<p style='font-size: 20px;  background-color: white; color: black;'>Upload an image for glaucoma detection (Max size: 200 MB)</p>""", unsafe_allow_html=True)
+st.markdown("""<p style='font-size: 20px;  background-color: cyan; color: black;'>Upload an image for glaucoma detection (Max size: 200 MB)</p>""", unsafe_allow_html=True)
 st.empty()
 uploaded_file = st.file_uploader(" ",type=["png", "jpg", "jpeg"], accept_multiple_files=False, key="file_uploader", help="Upload an image for glaucoma detection (Max size: 200 MB)")
 st.markdown("""
