@@ -101,7 +101,7 @@ st.markdown("<h1 class='blue-bg' style='text-align: center; color: #ecf0f1;'>Gla
 st.markdown("---")
 
 # Paragraph with content about uploading fundus images
-st.markdown("""<p style='font-size: 20px; text-align: center; background-color: orange; color: black;'>This is a simple image classification web application to predict glaucoma through fundus images of the eye. <strong><em>Please upload fundus images only.</em></strong></p>""", unsafe_allow_html=True)
+st.markdown("""<p style='font-size: 20px; text-align: center; background-color: cyan; color: black;'>This is a simple image classification web application to predict glaucoma through fundus images of the eye. <strong><em>Please upload fundus images only.</em></strong></p>""", unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -112,7 +112,7 @@ else:
     all_results = pd.read_csv("results.csv")
 
 # Sidebar for uploading image
-st.markdown("""<p style='font-size: 20px;  background-color: pink; color: black;'>Upload an image for glaucoma detection (Max size: 200 MB)</p>""", unsafe_allow_html=True)
+st.markdown("""<p style='font-size: 20px;  background-color: cyan; color: black;'>Upload an image for glaucoma detection (Max size: 200 MB)</p>""", unsafe_allow_html=True)
 st.empty()
 uploaded_file = st.file_uploader(" ",type=["png", "jpg", "jpeg"], accept_multiple_files=False, key="file_uploader", help="Upload an image for glaucoma detection (Max size: 200 MB)")
 st.markdown("""
@@ -152,7 +152,8 @@ if uploaded_file is not None:
 # Display all results in table with black background color
 if not all_results.empty:
     st.markdown("---")
-    st.subheader("Detection Results")
+    # Display subheader with white text and blue background
+    st.markdown("<h2 style='text-align: center; color: white; background-color: blue; padding: 10px;'>Detection Results</h2>", unsafe_allow_html=True)
     st.write(all_results.style.applymap(lambda x: 'color: red' if x == 'Glaucoma' else 'color: green', subset=['Prediction']).set_table_styles([{'selector': 'table', 'props': [('background-color', 'black'), ('color', 'white')]}]))
 
     # Pie chart
