@@ -85,6 +85,11 @@ background_image_style = f"""
         margin: 10px;   /* Adjust the margin as needed */
         color: black;   /* Text color */
     }}
+    .results-heading {{
+        background-color: darkblue; /* Set background color to dark blue */
+        padding: 10px; /* Adjust padding as needed */
+        color: white; /* Set text color to white */
+    }}
     </style>
 """
 
@@ -148,10 +153,10 @@ if uploaded_file is not None:
 if not all_results.empty:
     st.markdown("---")
     st.subheader("Detection Results")
-    st.table(all_results.style.applymap(lambda x: 'color: red' if x == 'Glaucoma' else 'color: green', subset=['Prediction']))
+    st.table(all_results.style.applymap(lambda x: 'color: red' if x == 'Glaucoma' else 'color: green', subset=['Prediction']), className='results-table')  # Apply custom class for DataFrame with black background
 
     # Pie chart
-    st.markdown("<h3  class='blue-bg' style='color: white;'>Pie Chart</h3>", unsafe_allow_html=True)
+    st.markdown("<h3  class='blue-bg results-heading'>Pie Chart</h3>", unsafe_allow_html=True)
     pie_data = all_results['Prediction'].value_counts()
     fig, ax = plt.subplots()
     colors = ['green' if label == 'Normal' else 'red' for label in pie_data.index]
@@ -160,7 +165,7 @@ if not all_results.empty:
     st.pyplot(fig)
 
     # Bar chart
-    st.markdown("<h3  class='blue-bg' style='color: white;'>Bar Chart</h3>", unsafe_allow_html=True)
+    st.markdown("<h3  class='blue-bg results-heading'>Bar Chart</h3>", unsafe_allow_html=True)
     bar_data = all_results['Prediction'].value_counts()
     fig, ax = plt.subplots()
     colors = ['green' if label == 'Normal' else 'red' for label in bar_data.index]
@@ -170,7 +175,7 @@ if not all_results.empty:
     st.pyplot(fig)
 
     # Option to download prediction report
-    st.markdown("<h3  class='yellow-bg' style='color: black;'>Download Prediction Report</h3>", unsafe_allow_html=True)
+    st.markdown("<h3  class='yellow-bg results-heading'>Download Prediction Report</h3>", unsafe_allow_html=True)
     csv = all_results.to_csv(index=False)
     st.download_button(
         label="Download CSV",
