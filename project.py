@@ -155,6 +155,10 @@ if not all_results.empty:
     # Display subheader with white text and blue background
     st.markdown("<h2 style='text-align: center; color: white; background-color: blue; padding: 10px;'>Detection Results</h2>", unsafe_allow_html=True)
     st.write(all_results.style.applymap(lambda x: 'color: red' if x == 'Glaucoma' else 'color: green', subset=['Prediction']).set_table_styles([{'selector': 'table', 'props': [('background-color', 'black'), ('color', 'white')]}]))
+    # Option to delete detection results
+    if st.checkbox("<div style='background-color: blue; color: white;'>Delete Detection Results</div>"):
+        all_results = pd.DataFrame(columns=["Image", "Prediction"])
+        st.success("<div style='background-color: blue; color: white;'>Detection results cleared.</div>")
 
     # Pie chart
     st.markdown("<h3  class='blue-bg results-heading'>Pie Chart</h3>", unsafe_allow_html=True)
